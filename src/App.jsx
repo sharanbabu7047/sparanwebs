@@ -17,7 +17,7 @@ export default function App() {
   const [loading, setLoading] = useState(true)
   const mounted = useRef(false)
 
-  useEffect(() => { const t = setTimeout(() => setLoading(false), reduced ? 0 : 1900); return () => clearTimeout(t) }, [reduced])
+  useEffect(() => { const t = setTimeout(() => setLoading(false), reduced ? 0 : 500); return () => clearTimeout(t) }, [reduced])
   useEffect(() => { document.title = TITLES[loc.pathname] || TITLES['/'] }, [loc.pathname])
   useEffect(() => { mounted.current = true }, [])
 
@@ -39,7 +39,7 @@ export default function App() {
       {mounted.current && !reduced && (
         <motion.div key={'wipe' + loc.pathname} aria-hidden="true" className="pointer-events-none fixed inset-0 z-[90]"
           style={{ background: 'linear-gradient(100deg,#050A12 40%,#07528C,#20D5F5 60%,#050A12 62%)' }}
-          initial={{ x: '-110%' }} animate={{ x: '110%' }} transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1] }} />
+          initial={{ x: '-110%' }} animate={{ x: '110%' }} transition={{ duration: 0.5, ease: [0.7, 0, 0.3, 1] }} />
       )}
     </SiteProvider>
   )

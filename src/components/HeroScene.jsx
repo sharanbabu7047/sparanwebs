@@ -67,7 +67,7 @@ export default function HeroScene() {
   const [vis, setVis] = useState(true)
   useEffect(() => { const io = new IntersectionObserver((e) => setVis(e[0].isIntersecting)); io.observe(ref.current); return () => io.disconnect() }, [])
   return (
-    <div ref={ref} className="absolute inset-0" aria-hidden="true">
+    <div ref={ref} className="absolute inset-0 pointer-events-none" aria-hidden="true">
       <Safe>
         <Canvas frameloop={vis ? 'always' : 'never'} dpr={[1, 2]} camera={{ position: [0, 0, 10], fov: 50 }} gl={{ alpha: true, antialias: true }}>
           <Shapes />

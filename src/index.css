@@ -6,7 +6,10 @@
   html { scroll-padding-top: 90px; color-scheme: dark; }
   body { @apply bg-brand-bg font-sans text-[1.0625rem] leading-relaxed text-brand-muted antialiased overflow-x-hidden; }
   h1, h2, h3, h4 { @apply font-display tracking-tight text-white; }
-  p { text-align: justify; text-justify: inter-word; }
+  p { text-align: left; }
+  @media (min-width: 640px) {
+    p { text-align: justify; text-justify: inter-word; }
+  }
   :focus-visible { outline: 2px solid #20D5F5; outline-offset: 3px; border-radius: 6px; }
 }
 @layer components {

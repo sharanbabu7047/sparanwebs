@@ -21,7 +21,7 @@ export default function Why() {
               </li>
             ))}
           </ul>
-          <div role="tabpanel" aria-live="polite" className="flex min-h-[320px] flex-col justify-center rounded-3xl border border-brand-border p-10 shadow-[0_0_50px_rgba(7,139,203,.12)]"
+          <div role="tabpanel" aria-live="polite" className="flex min-h-[320px] flex-col justify-center rounded-3xl border border-brand-border p-6 sm:p-10 shadow-[0_0_50px_rgba(7,139,203,.12)]"
             style={{ background: 'radial-gradient(80% 80% at 80% 0%,rgba(7,139,203,.3),#080F19)' }}>
             <AnimatePresence mode="wait">
               <motion.div key={i} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.25 }}>

@@ -39,5 +39,5 @@ export default function ParticleNetwork({ count = 70, interactive = false }) {
     return () => { cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); removeEventListener('mousemove', mm) }
   }, [count, interactive, reduced])
 
-  return <canvas ref={ref} className="absolute inset-0 h-full w-full" aria-hidden="true" />
+  return <canvas ref={ref} className="absolute inset-0 h-full w-full pointer-events-none" aria-hidden="true" />
 }

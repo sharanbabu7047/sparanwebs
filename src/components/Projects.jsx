@@ -27,7 +27,7 @@ function Card({ p, i }) {
   return (
     <Reveal delay={i * 0.1}>
       <article className="group [perspective:1200px]">
-        <div className="transition-transform duration-500 [transform:rotateY(-5deg)_rotateX(2deg)] group-hover:[transform:none]">
+        <div className="transition-transform duration-500 sm:[transform:rotateY(-5deg)_rotateX(2deg)] group-hover:[transform:none]">
           <div className="overflow-hidden rounded-[14px] border border-brand-border bg-brand-navy shadow-[0_30px_60px_rgba(0,0,0,.5),0_0_30px_rgba(7,139,203,.15)] transition duration-300 group-hover:border-brand-cyan/60 group-hover:shadow-[0_20px_50px_rgba(32,213,245,.2)]">
             <div className="flex items-center gap-1.5 border-b border-brand-border bg-brand-surface px-3.5 py-2.5">
               {[0, 1, 2].map((d) => <i key={d} className="h-2.5 w-2.5 rounded-full bg-brand-border" />)}

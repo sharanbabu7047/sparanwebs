@@ -51,7 +51,7 @@ export default function Navbar() {
       </nav>
       <AnimatePresence>
         {open && (
-          <motion.div className="border-t border-brand-border bg-brand-bg/95 px-6 pb-8 pt-4 backdrop-blur-xl md:hidden"
+          <motion.div className="max-h-[calc(100vh-76px)] overflow-y-auto border-t border-brand-border bg-brand-bg/95 px-6 pb-8 pt-4 backdrop-blur-xl md:hidden"
             initial={{ clipPath: 'inset(0 0 100% 0)' }} animate={{ clipPath: 'inset(0 0 0% 0)' }} exit={{ clipPath: 'inset(0 0 100% 0)' }} transition={{ duration: 0.45, ease: [0.7, 0, 0.2, 1] }}>
             <div className="flex flex-col">
               {ITEMS.map((i, k) => (

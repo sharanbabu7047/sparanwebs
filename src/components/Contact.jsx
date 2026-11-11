@@ -68,7 +68,7 @@ export default function Contact() {
         <Heading lead="Have an idea? Let’s turn it into something extraordinary.">Your Idea Deserves More Than Just a Website</Heading>
         <div className="grid gap-12 lg:grid-cols-[1.2fr_.8fr]">
           <Reveal>
-            <form onSubmit={submit} noValidate aria-label="Contact form" className="glass grid gap-4 rounded-3xl p-8">
+            <form onSubmit={submit} noValidate aria-label="Contact form" className="glass grid gap-4 rounded-3xl p-5 sm:p-8">
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className={label}>Name<input className="field" autoComplete="name" value={v.name} onChange={set('name')} {...bind('name')} /><Err k="name" /></label>
                 <label className={label}>Email<input className="field" type="email" autoComplete="email" value={v.email} onChange={set('email')} {...bind('email')} /><Err k="email" /></label>
