@@ -36,7 +36,7 @@ export default function Contact() {
     }
     setStatus({ s: 'sending', m: 'Sending…' })
     try {
-      const targetUrl = SITE.formEndpoint.replace('localhost', window.location.hostname || 'localhost')
+      const targetUrl = SITE.formEndpoint
       const r = await fetch(targetUrl, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(values) })
       if (!r.ok) {
         const errData = await r.json().catch(() => ({}))
@@ -49,7 +49,7 @@ export default function Contact() {
       setStatus({
         s: 'error',
         m: err.message === 'Failed to fetch'
-          ? 'Cannot connect to the backend server. Please make sure the backend is running on port 5000 (cd server && npm run dev).'
+          ? 'Cannot connect to the email service. Please check your internet connection and try again.'
           : (err.message || 'Message not sent. Check your connection and try again.')
       })
     }

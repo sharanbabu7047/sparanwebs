@@ -5,7 +5,7 @@ export const SITE = {
   name: 'SparanWebs',
   email: 'sparanwebs@gmail.com',
   instagram: 'sparanwebs',
-  formEndpoint: 'http://localhost:5000/api/enquiry',
+  formEndpoint: '/api/enquiry',
 }
 
 export const SERVICES = [
