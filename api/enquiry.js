@@ -55,78 +55,146 @@ export default async function handler(req, res) {
     const cleanEmail = email.trim().toLowerCase()
     const cleanType = type.trim()
     const cleanMessage = message.trim()
+    const currentYear = new Date().getFullYear()
 
-    // 1. Admin Email HTML
+    // 1. Admin Email (Delivered to sparanwebs@gmail.com)
     const adminHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 24px; background: #050A12; color: #FFFFFF; border-radius: 12px; border: 1px solid #18364B;">
-        <h2 style="color: #20D5F5; margin-top: 0; font-size: 22px;">New Project Enquiry Received!</h2>
-        <p style="color: #A8B8C9; font-size: 14px;">A new client submitted the contact form on SparanWebs.</p>
-        
-        <div style="background: #080F19; border: 1px solid #18364B; padding: 18px; border-radius: 8px; margin: 20px 0;">
-          <p style="margin: 6px 0;"><strong style="color: #20D5F5;">Client Name:</strong> ${cleanName}</p>
-          <p style="margin: 6px 0;"><strong style="color: #20D5F5;">Client Email:</strong> <a href="mailto:${cleanEmail}" style="color: #20D5F5;">${cleanEmail}</a></p>
-          <p style="margin: 6px 0;"><strong style="color: #20D5F5;">Project Type:</strong> ${cleanType}</p>
-          <p style="margin: 6px 0;"><strong style="color: #20D5F5;">Received At:</strong> ${new Date().toLocaleString()}</p>
-        </div>
+      <!DOCTYPE html>
+      <html>
+      <body style="margin: 0; padding: 20px; background-color: #0b1320; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #ffffff;">
+        <div style="max-width: 600px; margin: 0 auto; background-color: #050a12; border: 1px solid #18364b; border-radius: 12px; overflow: hidden;">
+          <div style="background: linear-gradient(90deg, #07528c, #078bcb); padding: 20px; text-align: center;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 20px; letter-spacing: 0.5px;">SparanWebs New Client Enquiry</h1>
+          </div>
+          <div style="padding: 24px;">
+            <p style="color: #94a3b8; font-size: 14px; margin-top: 0;">You have received a new project enquiry from your website contact form:</p>
+            
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0; background-color: #080f19; border: 1px solid #1e293b; border-radius: 8px;">
+              <tr><td style="padding: 10px 14px; color: #38bdf8; font-weight: bold; width: 130px; border-bottom: 1px solid #1e293b;">Name:</td><td style="padding: 10px 14px; color: #ffffff; border-bottom: 1px solid #1e293b;">${cleanName}</td></tr>
+              <tr><td style="padding: 10px 14px; color: #38bdf8; font-weight: bold; border-bottom: 1px solid #1e293b;">Email:</td><td style="padding: 10px 14px; color: #ffffff; border-bottom: 1px solid #1e293b;"><a href="mailto:${cleanEmail}" style="color: #38bdf8;">${cleanEmail}</a></td></tr>
+              <tr><td style="padding: 10px 14px; color: #38bdf8; font-weight: bold; border-bottom: 1px solid #1e293b;">Project Type:</td><td style="padding: 10px 14px; color: #ffffff; border-bottom: 1px solid #1e293b;">${cleanType}</td></tr>
+              <tr><td style="padding: 10px 14px; color: #38bdf8; font-weight: bold;">Received:</td><td style="padding: 10px 14px; color: #94a3b8;">${new Date().toLocaleString()}</td></tr>
+            </table>
 
-        <div style="background: #111E2D; border-left: 4px solid #20D5F5; padding: 16px; border-radius: 4px; margin: 20px 0;">
-          <h4 style="margin: 0 0 8px 0; color: #FFFFFF;">Project Description:</h4>
-          <p style="color: #E2E8F0; white-space: pre-wrap; line-height: 1.6; margin: 0;">${cleanMessage}</p>
-        </div>
+            <div style="background-color: #0f172a; border-left: 4px solid #38bdf8; padding: 16px; border-radius: 4px; margin: 20px 0;">
+              <h4 style="margin: 0 0 8px 0; color: #ffffff; font-size: 14px;">Project Description:</h4>
+              <p style="color: #e2e8f0; white-space: pre-wrap; line-height: 1.6; margin: 0; font-size: 14px;">${cleanMessage}</p>
+            </div>
 
-        <div style="margin-top: 24px; text-align: center;">
-          <a href="mailto:${cleanEmail}?subject=Re: Your SparanWebs Project Enquiry (${cleanType})" 
-             style="background: linear-gradient(90deg,#07528C,#078BCB,#20D5F5); color: #FFFFFF; text-decoration: none; padding: 12px 24px; border-radius: 24px; font-weight: bold; display: inline-block;">
-            Reply to ${cleanName}
-          </a>
+            <div style="text-align: center; margin-top: 24px;">
+              <a href="mailto:${cleanEmail}?subject=Re: Your SparanWebs Project Enquiry (${cleanType})" 
+                 style="background-color: #0284c7; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-weight: bold; display: inline-block;">
+                Reply Directly to ${cleanName}
+              </a>
+            </div>
+          </div>
         </div>
-
-        <hr style="border: none; border-top: 1px solid #18364B; margin: 24px 0;" />
-        <p style="color: #64748B; font-size: 12px; text-align: center; margin: 0;">
-          SparanWebs Enquiry Notification System
-        </p>
-      </div>
+      </body>
+      </html>
     `
 
-    // 2. Client Confirmation HTML
+    // 2. Client Confirmation Email - Anti-Spam Optimized Template (Clean, High Reputation)
     const clientHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 24px; background: #050A12; color: #FFFFFF; border-radius: 12px; border: 1px solid #18364B;">
-        <h2 style="color: #20D5F5; margin-top: 0; font-size: 22px;">Thank You, ${cleanName}!</h2>
-        <p style="color: #E2E8F0; line-height: 1.6;">
-          We have received your enquiry for <strong>${cleanType}</strong>. Our team will review your requirements and get back to you within one business day.
-        </p>
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SparanWebs Project Enquiry</title>
+      </head>
+      <body style="margin: 0; padding: 24px 12px; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 580px; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+          <!-- Header -->
+          <tr>
+            <td style="background-color: #050a12; padding: 28px 24px; text-align: center;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 700; letter-spacing: 0.5px;">SparanWebs</h1>
+              <p style="margin: 4px 0 0 0; color: #38bdf8; font-size: 13px;">Premium Web Development Studio</p>
+            </td>
+          </tr>
+          <!-- Body Content -->
+          <tr>
+            <td style="padding: 32px 28px;">
+              <h2 style="margin: 0 0 16px 0; color: #0f172a; font-size: 20px; font-weight: 600;">Hello ${cleanName},</h2>
+              <p style="margin: 0 0 16px 0; color: #334155; font-size: 15px;">
+                Thank you for contacting SparanWebs. We have successfully received your project enquiry regarding <strong>${cleanType}</strong>.
+              </p>
+              
+              <!-- Next Steps Card -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f8fafc; border-left: 4px solid #0284c7; border-radius: 6px; padding: 16px 20px; margin: 20px 0;">
+                <tr>
+                  <td>
+                    <h3 style="margin: 0 0 10px 0; color: #0f172a; font-size: 15px; font-weight: 600;">What happens next?</h3>
+                    <ul style="margin: 0; padding-left: 18px; color: #475569; font-size: 14px;">
+                      <li style="margin-bottom: 8px;">Our team will review your project requirements and goals.</li>
+                      <li style="margin-bottom: 8px;">We will reply to this email within one business day with details and next steps.</li>
+                      <li>We will work together on timeline, architecture, and deliverables.</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
 
-        <div style="background: #080F19; border: 1px solid #18364B; padding: 16px; border-radius: 8px; margin: 20px 0;">
-          <h4 style="margin: 0 0 8px 0; color: #20D5F5;">What happens next?</h4>
-          <ol style="color: #A8B8C9; padding-left: 20px; margin: 0; line-height: 1.6;">
-            <li>We review your goals, scope, and technical requirements.</li>
-            <li>We reach out via email to discuss timeline, deliverables, and architecture.</li>
-            <li>We prepare a clear proposal to kick off your build.</li>
-          </ol>
-        </div>
+              <p style="margin: 20px 0 0 0; color: #334155; font-size: 14px;">
+                If you have any extra details or reference links to add in the meantime, simply <strong>reply directly to this email</strong> or write to us at <a href="mailto:${GMAIL_USER}" style="color: #0284c7; text-decoration: none;">${GMAIL_USER}</a>.
+              </p>
 
-        <p style="color: #A8B8C9; font-size: 14px;">
-          If you have any urgent details to add, feel free to reply directly to this email or reach us at <a href="mailto:${GMAIL_USER}" style="color: #20D5F5;">${GMAIL_USER}</a>.
-        </p>
-      </div>
+              <p style="margin: 28px 0 0 0; color: #64748B; font-size: 14px;">
+                Warm regards,<br>
+                <strong style="color: #0f172a;">The SparanWebs Team</strong><br>
+                <a href="https://sparanwebs.com" style="color: #0284c7; text-decoration: none; font-size: 13px;">sparanwebs.com</a>
+              </p>
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; padding: 18px 24px; text-align: center; color: #94a3b8; font-size: 12px;">
+              © ${currentYear} SparanWebs. All rights reserved.<br>
+              You received this message because you submitted a contact request on our website.
+            </td>
+          </tr>
+        </table>
+      </body>
+      </html>
     `
 
-    // Send emails
+    // Plain text matching HTML perfectly (Crucial for passing anti-spam algorithms)
+    const clientText = `Hello ${cleanName},
+
+Thank you for contacting SparanWebs. We have successfully received your project enquiry regarding "${cleanType}".
+
+What happens next?
+1. Our team will review your project requirements and goals.
+2. We will reply to this email within one business day with details and next steps.
+3. We will work together on timeline, architecture, and deliverables.
+
+If you have any extra details or reference links to add in the meantime, simply reply directly to this email or write to us at ${GMAIL_USER}.
+
+Warm regards,
+The SparanWebs Team
+sparanwebs.com
+`
+
+    // Send Admin Notification
     const adminPromise = transporter.sendMail({
       from: `"SparanWebs Notifications" <${GMAIL_USER}>`,
       to: GMAIL_USER,
       replyTo: cleanEmail,
-      subject: `🚀 New Project Enquiry: ${cleanType} from ${cleanName}`,
+      subject: `New Project Enquiry: ${cleanType} from ${cleanName}`,
       text: `New Enquiry from ${cleanName} (${cleanEmail})\nProject Type: ${cleanType}\n\nMessage:\n${cleanMessage}`,
       html: adminHtml,
     })
 
+    // Send Client Confirmation with anti-spam headers
     const clientPromise = transporter.sendMail({
       from: `"SparanWebs" <${GMAIL_USER}>`,
       to: cleanEmail,
+      replyTo: GMAIL_USER,
       subject: `We received your project enquiry – SparanWebs`,
-      text: `Hi ${cleanName},\n\nWe received your enquiry for ${cleanType}. We will get back to you within one business day!\n\nBest regards,\nSparanWebs Team`,
+      text: clientText,
       html: clientHtml,
+      headers: {
+        'X-Entity-Ref-ID': Date.now().toString(),
+        'X-Mailer': 'SparanWebs Notification System',
+      },
     })
 
     await Promise.allSettled([adminPromise, clientPromise])
@@ -140,4 +208,3 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Server error while processing your enquiry. Please try again.' })
   }
 }
-

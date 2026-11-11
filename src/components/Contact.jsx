@@ -70,16 +70,27 @@ export default function Contact() {
           <Reveal>
             <form onSubmit={submit} noValidate aria-label="Contact form" className="glass grid gap-4 rounded-3xl p-5 sm:p-8">
               <div className="grid gap-4 sm:grid-cols-2">
-                <label className={label}>Name<input className="field" autoComplete="name" value={v.name} onChange={set('name')} {...bind('name')} /><Err k="name" /></label>
-                <label className={label}>Email<input className="field" type="email" autoComplete="email" value={v.email} onChange={set('email')} {...bind('email')} /><Err k="email" /></label>
+                <label className={label}>
+                  <span className="flex items-center gap-1">Name <span className="text-red-400 font-semibold" title="Required">*</span></span>
+                  <input className="field" autoComplete="name" value={v.name} onChange={set('name')} {...bind('name')} />
+                  <Err k="name" />
+                </label>
+                <label className={label}>
+                  <span className="flex items-center gap-1">Email <span className="text-red-400 font-semibold" title="Required">*</span></span>
+                  <input className="field" type="email" autoComplete="email" value={v.email} onChange={set('email')} {...bind('email')} />
+                  <Err k="email" />
+                </label>
               </div>
-              <label className={label}>Project type
+              <label className={label}>
+                <span className="flex items-center gap-1">Project type <span className="text-red-400 font-semibold" title="Required">*</span></span>
                 <select className="field" value={type} onChange={(e) => setType(e.target.value)} {...bind('type')}>
                   <option value="">Choose a project type</option>
                   {SERVICES.map((s) => <option key={s.title}>{s.title}</option>)}<option>Something else</option>
-                </select><Err k="type" />
+                </select>
+                <Err k="type" />
               </label>
-              <label className={label}>Project description
+              <label className={label}>
+                <span className="flex items-center gap-1">Project description <span className="text-red-400 font-semibold" title="Required">*</span></span>
                 <textarea className="field" rows={5} value={v.message} onChange={set('message')} {...bind('message')} placeholder="Tell us about your project, goals, key requirements and timeline (at least 50 characters)..." />
                 <div className="flex items-center justify-between text-xs text-brand-muted">
                   <Err k="message" />
