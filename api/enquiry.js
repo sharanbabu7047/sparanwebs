@@ -47,8 +47,8 @@ export default async function handler(req, res) {
     if (!type) {
       return res.status(400).json({ error: 'Please select a project type.' })
     }
-    if (!message || message.trim().length < 50) {
-      return res.status(400).json({ error: 'Project description must be at least 50 characters.' })
+    if (!message || !message.trim()) {
+      return res.status(400).json({ error: 'Please enter a project description.' })
     }
 
     const cleanName = name.trim()

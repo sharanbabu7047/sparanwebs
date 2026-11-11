@@ -8,7 +8,7 @@ const RULES = {
   name: (v) => v.trim().length > 1 || 'Enter your name.',
   email: (v) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v) || 'Enter a valid email address.',
   type: (v) => !!v || 'Choose a project type.',
-  message: (v) => v.trim().length >= 50 || 'Describe your project in at least 50 characters.',
+  message: (v) => !!v.trim() || 'Enter your project description.',
 }
 
 export default function Contact() {
@@ -91,13 +91,8 @@ export default function Contact() {
               </label>
               <label className={label}>
                 <span className="flex items-center gap-1">Project description <span className="text-red-400 font-semibold" title="Required">*</span></span>
-                <textarea className="field" rows={5} value={v.message} onChange={set('message')} {...bind('message')} placeholder="Tell us about your project, goals, key requirements and timeline (at least 50 characters)..." />
-                <div className="flex items-center justify-between text-xs text-brand-muted">
-                  <Err k="message" />
-                  <span className={v.message.trim().length >= 50 ? 'text-brand-cyan' : 'text-brand-muted'}>
-                    {v.message.trim().length}/50 characters
-                  </span>
-                </div>
+                <textarea className="field" rows={5} value={v.message} onChange={set('message')} {...bind('message')} placeholder="Tell us about your project, goals, key requirements and timeline..." />
+                <Err k="message" />
               </label>
               <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" value={v._gotcha} onChange={set('_gotcha')} />
               <button type="submit" className="btn-primary" disabled={status.s === 'sending'}><Send size={18} /> Send Message</button>
