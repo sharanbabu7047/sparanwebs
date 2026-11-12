@@ -1,7 +1,7 @@
 {
-  "name": "sparanwebs-server",
+  "name": "syntrawebs-server",
   "version": "1.0.0",
-  "description": "Email dispatch backend for SparanWebs contact form",
+  "description": "Email dispatch backend for SyntraWebs contact form",
   "main": "server.js",
   "type": "module",
   "scripts": {

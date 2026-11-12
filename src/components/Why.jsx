@@ -9,7 +9,7 @@ export default function Why() {
   return (
     <section id="why" className="section">
       <div className="wrap">
-        <Heading lead="Select a point to see what it means for your project.">Why choose SparanWebs?</Heading>
+        <Heading lead="Select a point to see what it means for your project.">Why choose SyntraWebs?</Heading>
         <div className="grid gap-12 lg:grid-cols-2">
           <ul role="tablist" aria-label="Advantages">
             {ADVANTAGES.map(({ icon: I, title }, k) => (

@@ -1,7 +1,10 @@
 import nodemailer from 'nodemailer'
 
-const GMAIL_USER = process.env.GMAIL_USER || 'sparanwebs@gmail.com'
-const GMAIL_PASS = (process.env.GMAIL_APP_PASSWORD || 'laupkmmayjszqasu').replace(/\s+/g, '')
+const GMAIL_USER = process.env.GMAIL_USER || 'syntrawebs@gmail.com'
+const GMAIL_PASS = (process.env.GMAIL_APP_PASSWORD || 'ipzsabhhffvwvknd').replace(/\s+/g, '')
+
+// Both emails will receive admin notifications when a client fills out the form
+const ADMIN_EMAILS = ['syntrawebs@gmail.com', 'sparanwebs@gmail.com']
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -57,14 +60,14 @@ export default async function handler(req, res) {
     const cleanMessage = message.trim()
     const currentYear = new Date().getFullYear()
 
-    // 1. Admin Email (Delivered to sparanwebs@gmail.com)
+    // 1. Admin Email (Delivered to both syntrawebs@gmail.com & sparanwebs@gmail.com)
     const adminHtml = `
       <!DOCTYPE html>
       <html>
       <body style="margin: 0; padding: 20px; background-color: #0b1320; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #ffffff;">
         <div style="max-width: 600px; margin: 0 auto; background-color: #050a12; border: 1px solid #18364b; border-radius: 12px; overflow: hidden;">
           <div style="background: linear-gradient(90deg, #07528c, #078bcb); padding: 20px; text-align: center;">
-            <h1 style="color: #ffffff; margin: 0; font-size: 20px; letter-spacing: 0.5px;">SparanWebs New Client Enquiry</h1>
+            <h1 style="color: #ffffff; margin: 0; font-size: 20px; letter-spacing: 0.5px;">SyntraWebs New Client Enquiry</h1>
           </div>
           <div style="padding: 24px;">
             <p style="color: #94a3b8; font-size: 14px; margin-top: 0;">You have received a new project enquiry from your website contact form:</p>
@@ -82,7 +85,7 @@ export default async function handler(req, res) {
             </div>
 
             <div style="text-align: center; margin-top: 24px;">
-              <a href="mailto:${cleanEmail}?subject=Re: Your SparanWebs Project Enquiry (${cleanType})" 
+              <a href="mailto:${cleanEmail}?subject=Re: Your SyntraWebs Project Enquiry (${cleanType})" 
                  style="background-color: #0284c7; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-weight: bold; display: inline-block;">
                 Reply Directly to ${cleanName}
               </a>
@@ -100,14 +103,14 @@ export default async function handler(req, res) {
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SparanWebs Project Enquiry</title>
+        <title>SyntraWebs Project Enquiry</title>
       </head>
       <body style="margin: 0; padding: 24px 12px; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
         <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 580px; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
           <!-- Header -->
           <tr>
             <td style="background-color: #050a12; padding: 28px 24px; text-align: center;">
-              <h1 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 700; letter-spacing: 0.5px;">SparanWebs</h1>
+              <h1 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 700; letter-spacing: 0.5px;">SyntraWebs</h1>
               <p style="margin: 4px 0 0 0; color: #38bdf8; font-size: 13px;">Premium Web Development Studio</p>
             </td>
           </tr>
@@ -116,7 +119,7 @@ export default async function handler(req, res) {
             <td style="padding: 32px 28px;">
               <h2 style="margin: 0 0 16px 0; color: #0f172a; font-size: 20px; font-weight: 600;">Hello ${cleanName},</h2>
               <p style="margin: 0 0 16px 0; color: #334155; font-size: 15px;">
-                Thank you for contacting SparanWebs. We have successfully received your project enquiry regarding <strong>${cleanType}</strong>.
+                Thank you for contacting SyntraWebs. We have successfully received your project enquiry regarding <strong>${cleanType}</strong>.
               </p>
               
               <!-- Next Steps Card -->
@@ -139,15 +142,15 @@ export default async function handler(req, res) {
 
               <p style="margin: 28px 0 0 0; color: #64748B; font-size: 14px;">
                 Warm regards,<br>
-                <strong style="color: #0f172a;">The SparanWebs Team</strong><br>
-                <a href="https://sparanwebs.com" style="color: #0284c7; text-decoration: none; font-size: 13px;">sparanwebs.com</a>
+                <strong style="color: #0f172a;">The SyntraWebs Team</strong><br>
+                <a href="https://syntrawebs.com" style="color: #0284c7; text-decoration: none; font-size: 13px;">syntrawebs.com</a>
               </p>
             </td>
           </tr>
           <!-- Footer -->
           <tr>
             <td style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; padding: 18px 24px; text-align: center; color: #94a3b8; font-size: 12px;">
-              © ${currentYear} SparanWebs. All rights reserved.<br>
+              © ${currentYear} SyntraWebs. All rights reserved.<br>
               You received this message because you submitted a contact request on our website.
             </td>
           </tr>
@@ -156,10 +159,10 @@ export default async function handler(req, res) {
       </html>
     `
 
-    // Plain text matching HTML perfectly (Crucial for passing anti-spam algorithms)
+    // Plain text matching HTML perfectly
     const clientText = `Hello ${cleanName},
 
-Thank you for contacting SparanWebs. We have successfully received your project enquiry regarding "${cleanType}".
+Thank you for contacting SyntraWebs. We have successfully received your project enquiry regarding "${cleanType}".
 
 What happens next?
 1. Our team will review your project requirements and goals.
@@ -169,14 +172,14 @@ What happens next?
 If you have any extra details or reference links to add in the meantime, simply reply directly to this email or write to us at ${GMAIL_USER}.
 
 Warm regards,
-The SparanWebs Team
-sparanwebs.com
+The SyntraWebs Team
+syntrawebs.com
 `
 
-    // Send Admin Notification
+    // Send Admin Notification to BOTH emails
     const adminPromise = transporter.sendMail({
-      from: `"SparanWebs Notifications" <${GMAIL_USER}>`,
-      to: GMAIL_USER,
+      from: `"SyntraWebs Notifications" <${GMAIL_USER}>`,
+      to: ADMIN_EMAILS,
       replyTo: cleanEmail,
       subject: `New Project Enquiry: ${cleanType} from ${cleanName}`,
       text: `New Enquiry from ${cleanName} (${cleanEmail})\nProject Type: ${cleanType}\n\nMessage:\n${cleanMessage}`,
@@ -185,15 +188,15 @@ sparanwebs.com
 
     // Send Client Confirmation with anti-spam headers
     const clientPromise = transporter.sendMail({
-      from: `"SparanWebs" <${GMAIL_USER}>`,
+      from: `"SyntraWebs" <${GMAIL_USER}>`,
       to: cleanEmail,
       replyTo: GMAIL_USER,
-      subject: `We received your project enquiry – SparanWebs`,
+      subject: `We received your project enquiry – SyntraWebs`,
       text: clientText,
       html: clientHtml,
       headers: {
         'X-Entity-Ref-ID': Date.now().toString(),
-        'X-Mailer': 'SparanWebs Notification System',
+        'X-Mailer': 'SyntraWebs Notification System',
       },
     })
 

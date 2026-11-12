@@ -13,7 +13,7 @@ export default function Footer() {
       <div className="wrap">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div>
-            <Link to="/" className="mb-4 flex items-center gap-3 font-display text-xl font-bold text-white"><img src={logo} alt="" className="h-11 w-11 object-contain" />SparanWebs</Link>
+            <Link to="/" className="mb-4 flex items-center gap-3 font-display text-xl font-bold text-white"><img src={logo} alt="" className="h-11 w-11 object-contain" />SyntraWebs</Link>
             <p className="mb-5 max-w-[34ch]">A web development studio building professional full-stack websites for businesses, individuals and students.</p>
             <div className="flex gap-3">
               <a className={soc} href={`https://instagram.com/${SITE.instagram}`} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={20} /></a>
@@ -36,7 +36,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-12 flex flex-wrap justify-between gap-2 border-t border-brand-border pt-6 text-sm">
-          <span>© {new Date().getFullYear()} SparanWebs. All rights reserved.</span><span>Built to move businesses forward.</span>
+          <span>© {new Date().getFullYear()} SyntraWebs. All rights reserved.</span><span>Built to move businesses forward.</span>
         </div>
       </div>
     </footer>

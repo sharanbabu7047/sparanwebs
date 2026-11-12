@@ -39,8 +39,8 @@ export default function Navbar() {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 border-b transition duration-300 ${scrolled || open ? 'border-brand-border bg-brand-bg/70 backdrop-blur-xl' : 'border-transparent'}`}>
       <nav aria-label="Main" className="wrap grid h-[76px] grid-cols-[1fr_auto] items-center md:grid-cols-[1fr_auto_1fr]">
-        <Link to="/" className="flex items-center gap-3 font-display text-xl font-bold text-white" aria-label="SparanWebs home">
-          <img src={logo} alt="SparanWebs logo" className="h-11 w-11 object-contain drop-shadow-[0_0_12px_rgba(32,213,245,0.45)] brightness-110" />SparanWebs
+        <Link to="/" className="flex items-center gap-3 font-display text-xl font-bold text-white" aria-label="SyntraWebs home">
+          <img src={logo} alt="SyntraWebs logo" className="h-11 w-11 object-contain drop-shadow-[0_0_12px_rgba(32,213,245,0.45)] brightness-110" />SyntraWebs
         </Link>
         <div className="hidden gap-9 md:flex">{ITEMS.map((i) => item(i))}</div>
         <button type="button" onClick={() => goTo('contact')} className="btn-primary hidden justify-self-end !px-5 !py-2.5 md:inline-flex">Let’s Talk</button>

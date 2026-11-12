@@ -1,4 +1,4 @@
-# SparanWebs – React website
+# SyntraWebs – React website
 
 Vite + React 18 · Tailwind CSS · Framer Motion · GSAP + ScrollTrigger · React Three Fiber · Lucide icons · React Router (hash routes).
 

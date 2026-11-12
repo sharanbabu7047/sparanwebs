@@ -1,6 +1,6 @@
 import { spawn } from 'node:child_process'
 
-console.log('\x1b[36m%s\x1b[0m', '🚀 Starting SparanWebs: Frontend + Backend concurrently...\n')
+console.log('\x1b[36m%s\x1b[0m', '🚀 Starting SyntraWebs: Frontend + Backend concurrently...\n')
 
 // 1. Start Backend Server (Port 5000)
 const server = spawn('node', ['server/server.js'], {
@@ -16,7 +16,7 @@ const client = spawn('npx', ['vite'], {
 
 // Graceful shutdown on Ctrl+C
 const shutdown = () => {
-  console.log('\n🛑 Stopping SparanWebs services...')
+  console.log('\n🛑 Stopping SyntraWebs services...')
   try { server.kill() } catch {}
   try { client.kill() } catch {}
   process.exit(0)

@@ -31,7 +31,7 @@ export default function AboutPage() {
     <section className="section pt-40">
       <div className="wrap grid items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
         <div>
-          <Reveal><h1 className="mb-8 text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.05]">About <span className="gradient-text">SparanWebs</span></h1></Reveal>
+          <Reveal><h1 className="mb-8 text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.05]">About <span className="gradient-text">SyntraWebs</span></h1></Reveal>
           <p ref={ref} className="font-display text-[clamp(1.5rem,3.2vw,2.4rem)] font-bold leading-tight text-white" aria-label={STATEMENT}>
             {STATEMENT.split(' ').map((w, i) => <span key={i} aria-hidden="true" className="word mr-[.25em] inline-block">{w}</span>)}
           </p>

@@ -2,9 +2,9 @@ import { Briefcase, User, GraduationCap, PenTool, Layers, Database, LayoutDashbo
 
 /* ---- EDIT YOUR REAL DETAILS HERE ---- */
 export const SITE = {
-  name: 'SparanWebs',
-  email: 'sparanwebs@gmail.com',
-  instagram: 'sparanwebs',
+  name: 'SyntraWebs',
+  email: 'syntrawebs@gmail.com',
+  instagram: 'syntrawebs',
   formEndpoint: '/api/enquiry',
 }
 

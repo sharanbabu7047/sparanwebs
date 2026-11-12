@@ -16,7 +16,7 @@ export default function Home() {
       <Services />
       <section id="work" className="section">
         <div className="wrap">
-          <Heading lead="Websites built by SparanWebs. Explore our live client builds, personal portfolios, and ongoing projects.">Our work</Heading>
+          <Heading lead="Websites built by SyntraWebs. Explore our live client builds, personal portfolios, and ongoing projects.">Our work</Heading>
           <ProjectGrid limit={4} />
           <div className="mt-12"><Link to="/work" className="btn">View all projects</Link></div>
         </div>

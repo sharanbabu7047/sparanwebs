@@ -29,7 +29,7 @@ export default function Contact() {
     if (bad) { document.getElementById(`f-${bad}`)?.focus(); return }
     if (v._gotcha) return
     if (!SITE.formEndpoint) {
-      const msg = encodeURIComponent(`Hi SparanWebs!\n\nName: ${v.name}\nEmail: ${v.email}\nProject Type: ${type}\n\nMessage:\n${v.message}`)
+      const msg = encodeURIComponent(`Hi SyntraWebs!\n\nName: ${v.name}\nEmail: ${v.email}\nProject Type: ${type}\n\nMessage:\n${v.message}`)
       window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(`Project Enquiry: ${type} - ${v.name}`)}&body=${msg}`
       setStatus({ s: 'ok', m: 'Opening your email client to send your enquiry…' })
       return

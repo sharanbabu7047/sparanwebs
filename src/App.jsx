@@ -9,7 +9,7 @@ import Home from './pages/Home'
 import WorkPage from './pages/WorkPage'
 import AboutPage from './pages/AboutPage'
 
-const TITLES = { '/': 'SparanWebs – Premium Web Development Studio', '/work': 'Our Work – SparanWebs', '/about': 'About – SparanWebs' }
+const TITLES = { '/': 'SyntraWebs – Premium Web Development Studio', '/work': 'Our Work – SyntraWebs', '/about': 'About – SyntraWebs' }
 
 export default function App() {
   const loc = useLocation()

@@ -30,7 +30,7 @@ const enquiryLimiter = rateLimit({
 app.get('/', (req, res) => {
   res.json({
     status: 'ok',
-    message: '🚀 SparanWebs Backend API is running smoothly!',
+    message: '🚀 SyntraWebs Backend API is running smoothly!',
     endpoints: {
       health: 'GET /api/health',
       enquiry: 'POST /api/enquiry',
@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 
 // Health Check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', service: 'SparanWebs Email Service', timestamp: new Date() })
+  res.json({ status: 'ok', service: 'SyntraWebs Email Service', timestamp: new Date() })
 })
 
 // Submit Enquiry & Send Email
@@ -89,7 +89,7 @@ app.post('/api/enquiry', enquiryLimiter, async (req, res) => {
 
     await Promise.allSettled([adminEmailPromise, clientEmailPromise])
 
-    console.log(`✉️ Enquiry from ${cleanName} (${cleanEmail}) delivered to sparanwebs@gmail.com`)
+    console.log(`✉️ Enquiry from ${cleanName} (${cleanEmail}) delivered to syntrawebs@gmail.com & sparanwebs@gmail.com`)
 
     return res.status(200).json({
       success: true,
@@ -102,5 +102,5 @@ app.post('/api/enquiry', enquiryLimiter, async (req, res) => {
 })
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 SparanWebs email backend running on http://localhost:${PORT}`)
+  console.log(`🚀 SyntraWebs email backend running on http://localhost:${PORT}`)
 })
